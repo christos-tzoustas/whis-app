@@ -1,0 +1,97 @@
+<%- include ("../partials/header") %>
+
+  <div class="row ">
+            <div class="col-xl-2 align-self-lg-center mb-5 mb-xl-0">
+                <div class="row">
+                    <div class="col-xl-12 col-4">
+                        <div class=" selectedDiv active d-flex justify-content-center">
+                            <a class="iconLink d-flex flex-column align-items-center " href="/expenses/">
+                                <span class="d-flex iconContainer justify-content-center align-items-center">
+                                    <span id="iconDesktop" class="d-flex fas fa-desktop fa-2x  "></span>
+                                </span>
+                                <span class=" iconLabel pt-1">Overview</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-4 mt-xl-5">
+                        <div class="d-flex justify-content-center ">
+                            <a class="iconLink d-flex flex-column align-items-center " href="/expenses/">
+                                <span class="d-flex iconContainer justify-content-center align-items-center">
+                                    <span id="iconEuro" class="d-flex fas fa-euro-sign fa-2x  "
+                                        data-fa-transform=" left-1"></span>
+                                </span>
+                                <span class="iconLabel pt-1">Add Expenses</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-4 mt-xl-5">
+                        <div class="d-flex justify-content-center ">
+                            <a class="iconLink d-flex flex-column align-items-center " href="/expenses/">
+                                <span class="d-flex iconContainer justify-content-center align-items-center">
+                                    <span id="iconHistory" class=" d-flex fas fa-calendar-alt fa-2x  "></span>
+                                </span>
+                                <span class=" iconLabel pt-1">History</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8  ">
+                <div class="overviewDiv ">
+                    <div>
+                        <h4 class="d-flex flex-row">
+                            <i id="overviewIcon" class="far fa-circle"></i>
+                            <span id="overviewSpan" class="d-block"><%= moment(expenses[0].createdAt).format("MMMM") %> 's Overview</span>
+                        </h4>
+                    </div>
+					 <div class="chartDiv pb-5 pl-5">
+			 
+        
+			    <canvas id="myChart"></canvas>
+			</div> 
+			
+            <span id='expenses' hidden>
+                <%= JSON.stringify(expenses); %>
+            </span>
+            <script src="scripts/chart.js">
+            </script>
+                </div>
+                
+            </div>
+            <div class="col-xl-2 align-self-xl-start">
+                <div class="row flex-row-reverse">
+                    <div class="col-sm-6 col-xl-12">
+                        <div class="amountDiv mr-xl-3 mt-5 mt-xl-0">
+                            <h4 class="mb-3">Total Amount</h4>
+                            <p>
+                                You have spent
+                                <span>687</span>
+                                <span>EUR</span>
+                                this month
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-12 mt-5">
+                        <div class="detailsDiv mr-sm-3">
+                            <h4 class="mb-3">Detailed View</h4>
+                            <ul id="detailsList" class=" text-capitalize">
+                               <%  expenses.forEach(function(expense){ %>
+                      <a> <li>
+                            <%= expense._id %>
+                        </li></a> 
+                        <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+
+
+
+				
+
+
+    <%- include ("../partials/footer") %>

@@ -1,0 +1,40 @@
+<%- include ("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2 align-self-center" style="margin:200px auto;">
+                <div class="list-group" id="list-tab" role="tablist">
+                          <a  href="/expenses" >Latest Expenses</a>
+                    <a  href="/expenses/new" >Add new Expense</a>
+                </div>
+            </div>
+            <div class="col-10">
+                <form action="/expenses" method="POST">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Jumbo">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" class="form-control" id="amount" name="amount" placeholder="12$" min="1.00" step="0.50">
+                    </div>
+                    <label for="type-select">Choose type of expense:</label>
+                    <select name="type" id="type-select">
+                        <option value="">--Please choose an option--</option>
+                        <option value="groceries">Groceries</option>
+                        <option value="home">Home</option>
+                        <option value="food">Food &#38; Drinks</option>
+                        <option value="rent">Rent</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="holiday">Holiday &#38; Travelling</option>
+                        <option value="leisure">Leisure &#38; Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="transportation">Transportation</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include ("../partials/footer") %>

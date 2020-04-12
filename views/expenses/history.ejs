@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %>
+
+    <div class="container">
+        <div class="row" >
+            <div class="col-2 align-self-center" style="margin:200px auto;">
+                <div class="list-group" id="list-tab" role="tablist">
+					<h2> Welcome <%= currentUser.username %>
+					</h2>
+                    <a  href="/expenses" >Latest Expenses</a>
+                    <a  href="/expenses/new" >Add new Expense</a>
+					 <a  href="/expenses-history" >History</a>
+                </div>
+            </div>
+            <div class="col-10">
+				<h1>
+					Expenses by month
+				</h1>
+           <%  expenses.forEach(function(expense){ %> 
+					<li>  <%= expense._id %> - <%= expense.totalExpensesAmount %> </li>
+					 <% expense.expenses.forEach(function(expenseDetailed){ %>
+					<li> 	<%= expenseDetailed.type %> - <%=  expenseDetailed.amount %> - <%=  expenseDetailed.description %>	 </li>
+					 <%	}) %>
+				
+				<% }) %>
+				<h2>
+					
+				</h2>
+            </div>
+        </div>
+    </div>
+    <%- include ("../partials/footer") %>
