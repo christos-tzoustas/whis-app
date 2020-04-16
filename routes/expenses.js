@@ -33,15 +33,48 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
 		if (err){
 			console.log(err);
 		} else {
+			if (expenses.length < 1) {
+				req.flash("success", "No data to show. Add expenses to begin :) ");
+				res.redirect("/expenses/new");
+			} else {
+				res.render("expenses/index", {expenses: expenses, page:"expenses"});
+			}
 			
-			res.render("expenses/index", {expenses: expenses});
 		}
 	});
 });
 
+
 //NEW ROUTE
 router.get('/new', middleware.isLoggedIn, function(req, res) {
-    res.render('expenses/new');
+    res.render('expenses/new', {page: "addExpenses"});
+});
+
+
+//SHOW ROUTE
+router.get('/:id', middleware.isLoggedIn, function(req, res) {
+    Expense.find(
+      
+        {
+				$and:[{createdAt: { $gte: new Date(moment(1, 'DD')), $lt: new Date(moment(1, 'DD').add(1, 'month')) }},
+					{"author.id": req.user._id}, {"type": req.params.id}]
+				
+            }
+
+    , function(err, expenses){
+		if (err){
+			console.log(err);
+		} else {
+			if (expenses.length < 1) {
+				req.flash("success", "No data to show :) ");
+				res.redirect("/expenses/");
+			} else {
+				
+				res.render("expenses/show", {expenses: expenses, page:"expenses"});
+			}
+			
+		}
+	});
 });
 
 //CREATE ROUTE

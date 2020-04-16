@@ -42,12 +42,9 @@
                         <h4 class="d-flex flex-row">
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
-								<% if (expenses.length < 1) { %>
 								
-								Overview
-								<% } else { %>
-									<%= moment(expenses[0].createdAt).format("MMMM") %>'s Overview
-								<% } %>
+									 Detailed View (<%=expenses[0].type %>) 
+							
 								</span>
                         </h4>
                     </div>
@@ -60,7 +57,7 @@
             <span id='expenses' hidden>
                 <%= JSON.stringify(expenses); %>
             </span>
-            <script src="/scripts/chart.js">
+            <script src="/scripts/chartDetailed.js">
             </script>
                 </div>
                 

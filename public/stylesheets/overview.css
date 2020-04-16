@@ -41,7 +41,7 @@ span.iconContainer {
     padding: 20px;
 }
 
-.amountDiv h4, .detailsDiv h4, .overviewDiv {
+.amountDiv h4, .detailsDiv h4, .overviewDiv h4 {
     color: #43dde6;
 }
 

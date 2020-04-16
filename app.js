@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express        = require('express'),
     app            = express(),
     bodyParser     = require('body-parser'),
@@ -19,7 +21,7 @@ var expensesRoutes = require("./routes/expenses"),
 	historyRoutes  = require("./routes/history");
 
 //APP CONFIG
-mongoose.connect('mongodb://localhost:27017/expense_tracker_v1', {
+mongoose.connect('mongodb://localhost:27017/expense_tracker_v2', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -35,7 +37,7 @@ app.use(flash());
 //PASSPORT CONFIG
 app.use(
     expressSession({
-        secret: 'Glukoulaki myrtoulaki hi hi hi!',
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false
     })

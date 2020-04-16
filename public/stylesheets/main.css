@@ -4,6 +4,16 @@ html {
     /* font-family: 'Open Sans', sans-serif; */
 }
 
+
+div.alert-danger {
+    background-color: #fc5185;
+    border: none;
+}
+
+div.alert-success {
+    background-color: #43dde6;
+    border: none;
+}
 .navbar-custom {
     background-color: #364f6b;
 }
@@ -18,18 +28,9 @@ img#logo {
     top: -13px;
 }
 
-#logoutIcon {
+#logoutIcon,#userIcon,#homeIcon {
     font-size: 30px;
 }
-
-#userIcon {
-    font-size: 30px;
-}
-#homeIcon {
-    font-size: 25px;
-}
-
-
 
 span#currentUser {
     color: #fc5185;
@@ -39,20 +40,6 @@ span#lastLogin {
     color: #fc5185;
 }
 
-@media screen and (max-width: 992px) {
-    ul#rightNavUl li:first-child {
-        order: 3;
-    }
-    ul#rightNavUl li:nth-child(2) {
-        order: 1;
-    }
-
-    ul#rightNavUl li:nth-child(3) {
-        order: 2;
-    }
-
-}
-
 hr {
     border-radius: 25px;
     height: 5px;
@@ -60,13 +47,10 @@ hr {
 }
 
 div.quoteDiv {
-	
-	background-color: #324861; 
-	border-radius: 15px ;
-	 padding: 20px;
-	
-
-} 
+    background-color: #324861;
+    border-radius: 15px;
+    padding: 20px;
+}
 
 .footerParagraph {
     font-size: 0.8rem;
@@ -82,12 +66,206 @@ div.footer img {
 }
 
 blockquote.blockquote p {
-	font-size: 1rem;
-	color: #fc5185;
-} 
-
-footer.blockquote-footer {
-	color: #4a698c;
+    font-size: 1rem;
+    color: #fc5185;
 }
 
+footer.blockquote-footer {
+    color: #4a698c;
+}
 
+.inner-addon {
+    position: relative;
+}
+
+div.login {
+    border-bottom: 2px solid white;
+    transition: 0.3s;
+}
+
+div.login.selectedInput {
+    border-bottom: 2px solid #43dde6;
+    color: #43dde6;
+}
+
+button.btn {
+    background-color: #fc5185;
+    color: white;
+    border-radius: 25px;
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(to right, #fc5185, #fc6a97, #fc5185);
+    background-size: 200%;
+    transition: 0.5s;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+button.btnExpenses {
+    width: 50%;
+    margin-top: 80px;
+}
+
+button.btn:hover {
+    background-position: right;
+    color: white;
+}
+
+input#username,
+input#password,
+input#description,
+input#amount {
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background: none;
+
+    font-size: 1.2rem;
+}
+
+input#username:-webkit-autofill,
+input#password:-webkit-autofill,
+input#description:-webkit-autofill,
+input#amount:-webkit-autofill {
+    -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+div.addExpensesDiv {
+    width: 50%;
+
+    border-radius: 15px;
+    padding: 20px;
+    margin: 40px;
+}
+
+#amountIcon,
+#descIcon {
+    position: absolute;
+    pointer-events: none;
+    left: 12px;
+    bottom: 21px;
+
+    transition: 0.3s;
+}
+
+.addExpensesDiv label {
+    color: #43dde6;
+}
+
+/* select input */
+
+.selectWrapper {
+    position: absolute;
+    z-index: 1;
+}
+
+.selectDiv {
+    position: relative;
+}
+
+#custom-select {
+    font-size: 16px;
+    color: white;
+    line-height: 1.3;
+    padding: 0.6em 1.4em 0.5em 0.8em;
+    display: block;
+
+    margin: 0;
+    border: 1px solid white;
+
+    border-radius: 0.5em;
+    background-color: #324861;
+    width: 100%;
+}
+
+#custom-select.selected {
+    border-radius: 0.5em 0.5em 0 0;
+    border-bottom: none;
+    border: 1px solid #43dde6;
+}
+
+#selectIcon {
+    position: absolute;
+    right: 10px;
+    top: 62px;
+}
+
+#selectIcon.selected {
+    color: #43dde6;
+}
+
+#custom-select:focus {
+    box-shadow: 0 0 0 1px #4a698c;
+    color: white;
+    outline: none;
+}
+
+.custom-select-options {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    padding-top: 20px;
+    border-radius: 0 0 0.5em 0.5em;
+    border: 1px solid white;
+    border-top: none;
+    margin-top: -20px;
+
+    background-color: #324861;
+}
+
+.custom-select-options.selected {
+    border: 1px solid #43dde6;
+    border-top: none;
+}
+
+.custom-select-options li {
+    padding: 10px 15px;
+}
+
+.custom-select-options li.selected {
+    background-color: #43dde6;
+    color: #364f6b;
+    cursor: pointer;
+}
+
+.custom-select-options li.selected:last-child {
+    background-color: #43dde6;
+    color: #364f6b;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+.custom-select-options.hidden-all {
+    display: none;
+}
+
+@-webkit-keyframes autofill {
+    0%,
+    100% {
+        color: #666;
+        background: transparent;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    ul#rightNavUl li:first-child {
+        order: 3;
+    }
+    ul#rightNavUl li:nth-child(2) {
+        order: 1;
+    }
+
+    ul#rightNavUl li:nth-child(3) {
+        order: 2;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    button.btnExpenses {
+        width: 100%;
+    }
+}

@@ -12,8 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/overview.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/overview.css">
 
 </head>
 
@@ -24,42 +24,42 @@
         <div class="row justify-content-center mb-xl-5 mb-4">
             <div class="col-xl-8 ">
 
-                <nav class="navbar navbar-expand-lg navbar-custom navbar-dark ">
-                    <a class="navbar-brand p-0" href="#">
-                        <img src="/images/logo-green.png" class="img-fluid pt-1" id="logo">
+                <nav class="navbar navbar-expand-lg navbar-custom navbar-dark pb-1 pt-4 ">
+                    <a class="navbar-brand pb-1" href="#">
+                        <img src="/images/logo-green.png" class="img-fluid " id="logo">
                     </a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav list-inline  ">
-                            <li class="nav-item active list-inline-item">
-                                <a class="nav-link pl-0" href="#"> 
+                    <div class="collapse navbar-collapse " id="navbarNav">
+                        <ul class="navbar-nav d-flex float-left">
+                            <li class="nav-item  <%= typeof page !== 'undefined' && page === 'expenses' ? 'active' : '' %>">
+                                <a class="nav-link pb-lg-2 mb-lg-1 pl-0" href="/expenses" > 
                                     <i id="homeIcon" class="fas fa-home pl-lg-0 pt-lg-1"></i>
-                                    <span class="sr-only">(current)</span> 
+                                    
                                 </a>
                             </li>
 
                         </ul>
-                        <ul id="rightNavUl" class=" navbar-nav ml-lg-auto align-items-lg-center text-light list-inline   ">
-                            <li class="nav-item text-lg-center list-inline-item">
-                                <span class="d-block ">Welcome
+                        <ul id="rightNavUl" class=" navbar-nav ml-lg-auto align-items-lg-center text-light d-flex flex-row ">
+                            <li class="nav-item ml-auto pb-lg-2">
+                                <span class="d-block  float-left">Welcome
                                     <span id="currentUser">
                                         <%= currentUser.username %>
                                     </span> !</span>
                                 <span class="d-block">
                                     <span id="lastLogin">Last Login:</span>
-                                    <%= moment(currentUser.lastLogin).format("ddd, hA") %>
+                                  	  <%= moment(currentUser.lastLogin).format("ddd, hA") %>
                                 </span>
                             </li>
-                            <li class="nav-item pl-lg-3 pl-0 list-inline-item">
+                            <li class="nav-item float-left d-flex pb-lg-1 pl-lg-3 pl-4">
 
-                                <a class="nav-link" href="{{ url('/login') }}">
+                                <a class="nav-link  " href="{{ url('/login') }}">
                                     <i id="userIcon" class="far fa-user"></i>
                                 </a>
                             </li>
-                            <li class="nav-item pl-0 pb-lg-1 pl-lg-3 list-inline-item">
+                            <li class="nav-item float-left d-flex  pb-lg-2 pl-lg-3 pl-4">
                                 <a class="nav-link" href="/logout">
                                     <i id="logoutIcon" class="fas fa-power-off pt-lg-1"></i>
                                 </a>
@@ -71,14 +71,14 @@
                 
                 <div id="flash" class="container">
                     <% if (error && error.length > 0) { %>
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger mt-4 mb-0 mb-xl-n2" role="alert">
                             <a href="#" class="alert-link">
                                 <%= error %>
                             </a>
                         </div>
                         <% } %>
                             <% if (success && success.length > 0) { %>
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-success mt-4 mb-0 mb-xl-n2" role="alert">
                                     <a href="#" class="alert-link">
                                         <%= success %>
                                     </a>

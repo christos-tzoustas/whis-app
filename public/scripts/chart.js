@@ -1,10 +1,15 @@
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
 document.getElementById('expenses').remove();
 
+function isMobileDevice(){
+    return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+}
+
+
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
-    dataSet.push(expense.totalExpensesAmount + "EUR");
+    dataSet.push(expense.totalExpensesAmount);
     labels.push(expense._id);
 });
 
@@ -21,45 +26,35 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: [
-            'Groceries',
-            'Food & Drinks',
-            'Home',
-            'Rent',
-            'Utilities',
-            'Holiday & Travelling',
-            'Leisure & Entertainment',
-            'Shopping',
-            'Transportation'
-        ],
+        labels: labels,
         datasets: [
             {
                 label: 'My expenses',
                 backgroundColor: [
-                    '#f4fa9c',
-                    '#ba53de',
-                    '#c5e3f6',
-					  '#DABB8F',
-                    '#FF554D',
-                    '#5fb58a',
-                    '#E7A649',
+                     '#43dde6',
+                   '#00c9ff',
+                    '#87a9ff',
+					  '#db7bdd',
+                    '#fc5185',
+                    '#ff809e',
+                    '#fea7b9',
                   
-                    '#7b7f88',
-                    '#436555'
+                    '#f9ccd4',
+                    '#f0f0f0'
                 ],
                 borderColor: [
-                    '#f4fa9c',
-                    '#ba53de',
-                    '#c5e3f6',
-					  '#DABB8F',
-                    '#FF554D',
-                    '#5fb58a',
-                    '#E7A649',
+                     '#43dde6',
+                   '#00c9ff',
+                    '#87a9ff',
+					  '#db7bdd',
+                    '#fc5185',
+                    '#ff809e',
+                    '#fea7b9',
                   
-                    '#7b7f88',
-                    '#436555'
+                    '#f9ccd4',
+                    '#f0f0f0'
                 ],
-                data: [300, 444, 122, 444, 333, 222, 222, 555, 333]
+                data: dataSet
             }
         ]
     },
@@ -73,7 +68,8 @@ var chart = new Chart(ctx, {
                 fontColor: '#ffffff',
                 padding: 20
             },
-            position: 'left'
+            position: 'left',
+			display: !isMobileDevice()
         },
         title: {
             display: false,

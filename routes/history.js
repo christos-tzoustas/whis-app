@@ -31,7 +31,7 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
 		if (err){
 			console.log(err);
 		} else {
-			res.render("expenses/history", {expenses: expenses});
+			res.render("expenses/history", {expenses: expenses, page:"history"});
 		}
 	});
 });
