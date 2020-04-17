@@ -3,6 +3,7 @@ require('dotenv').config();
 var express        = require('express'),
     app            = express(),
     bodyParser     = require('body-parser'),
+	requirejs      = require('requirejs'),
     mongoose       = require('mongoose'),
     passport       = require('passport'),
     localStrategy  = require('passport-local'),
@@ -12,6 +13,17 @@ var express        = require('express'),
     Expense        = require('./models/expense'),
     seedDB         = require('./seeds'),
 	flash          = require("connect-flash");
+
+//REQUIREJS CONFIG
+requirejs.config({
+  packages: [{
+    name: 'moment',
+    // This location is relative to baseUrl. Choose bower_components
+    // or node_modules, depending on how moment was installed.
+    location: 'node_modules/moment',
+    main: 'moment'
+  }]
+});
    
 
 //REQUIRING ROUTES

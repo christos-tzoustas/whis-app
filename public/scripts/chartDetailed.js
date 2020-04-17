@@ -1,4 +1,5 @@
-
+var moment = requirejs("moment"),
+	requirejs      = require('requirejs');
 
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
 document.getElementById('expenses').remove();
@@ -17,6 +18,9 @@ expenses.forEach(function(expense) {
 	xAxis.push(expense.createdAt);
 });
 
+define(['moment'], function (moment) {
+    console.log(moment(expense.createdAt).format('MMM'));  // 'Friday, June 24, 2016 1:42 AM'
+});
 
 
 var ctx = document.getElementById('myChart').getContext('2d');
