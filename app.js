@@ -3,7 +3,6 @@ require('dotenv').config();
 var express        = require('express'),
     app            = express(),
     bodyParser     = require('body-parser'),
-	requirejs      = require('requirejs'),
     mongoose       = require('mongoose'),
     passport       = require('passport'),
     localStrategy  = require('passport-local'),
@@ -14,23 +13,14 @@ var express        = require('express'),
     seedDB         = require('./seeds'),
 	flash          = require("connect-flash");
 
-//REQUIREJS CONFIG
-requirejs.config({
-  packages: [{
-    name: 'moment',
-    // This location is relative to baseUrl. Choose bower_components
-    // or node_modules, depending on how moment was installed.
-    location: 'node_modules/moment',
-    main: 'moment'
-  }]
-});
-   
+
 
 //REQUIRING ROUTES
 var expensesRoutes = require("./routes/expenses"),
 	indexRoutes    = require("./routes/index"),
 	usersRoutes    = require("./routes/users"),
-	historyRoutes  = require("./routes/history");
+	historyRoutes  = require("./routes/history"),
+	detailsRoutes  = require("./routes/details");
 
 //APP CONFIG
 mongoose.connect('mongodb://localhost:27017/expense_tracker_v2', {
@@ -71,6 +61,7 @@ app.use("/expenses", expensesRoutes);
 app.use("/users", usersRoutes);
 app.use(indexRoutes);
 app.use("/expenses-history", historyRoutes);
+app.use("/expenses/:id/details", detailsRoutes);
 
 //SERVER CONFIG
 app.listen(3000, function() {

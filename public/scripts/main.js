@@ -50,6 +50,28 @@ $(document).click(function(){
 })
 
 
+function validateForm() {
+  var x = $("input#custom-select").val();
+	var valid = false;
+	console.log(x)
+  $('ul.custom-select-options li').each(function(i){
+
+	  var item = $(this).text();
+console.log (item)
+	  if (item === x) {
+		 
+		  valid = true;
+	  } 
+	   	 
+  });
+   if (!valid) {
+	   $("input#custom-select").val("Please select one of the values below ")
+   }
+	
+  return valid;
+} 
+
+
 //resize select element
 function showWidth (){
 	var width =  $("div.login.form-group").width();
@@ -61,4 +83,15 @@ $("div.selectWrapper").width( showWidth() );
 $( window ).resize(function() {
  var width =  $("div.login.form-group").width() ;
 	$("div.selectWrapper").width(width );
+});
+
+//edit div toggle
+
+$("span#iconEditSpan").click(function(event){
+
+    $(this).next(".editToggler").toggleClass("hidden-all")
+	
+
+	
+	event.stopPropagation();
 });

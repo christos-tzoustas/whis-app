@@ -1,6 +1,4 @@
-var moment = requirejs("moment"),
-	requirejs      = require('requirejs');
-
+var moment = require("moment");
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
 document.getElementById('expenses').remove();
 
@@ -15,11 +13,7 @@ var dataSet = [];
 expenses.forEach(function(expense) {
     dataSet.push({x: expense.createdAt, y: expense.amount});
     labels.push(expense.description);
-	xAxis.push(expense.createdAt);
-});
-
-define(['moment'], function (moment) {
-    console.log(moment(expense.createdAt).format('MMM'));  // 'Friday, June 24, 2016 1:42 AM'
+	xAxis.push(moment(expense.createdAt).format('DD MMM'));
 });
 
 
@@ -36,11 +30,18 @@ var chart = new Chart(ctx, {
                 labels: labels, 
 				// ["jumno","albert","poytsa","ble"]
                
-                data:  dataSet
+                data:  dataSet,
 				   // [{x: "10:00", y:  127},
 				   // {x: "11:00", y: 140},
 				   // {x: "12:00", y: 135},
-				   // {x: "13:00", y: 122}]
+				   // {x: "13:00", y: 122}],
+			 
+			 borderColor: "rgba(252,81,133,0.4)",
+			
+			 pointBackgroundColor: "rgb(252,81,133)",
+			 pointHoverBorderColor: "rgb(67,221,230)"
+			
+		
             }
         ]
     },
@@ -59,25 +60,31 @@ var chart = new Chart(ctx, {
 		 scales: {
             xAxes: [{
                 type: 'category',
-                labels: xAxis
-				// ["10:00", "11:00", "12:00", "13:00"]
+                labels: xAxis,
+				// ["10:00", "11:00", "12:00", "13:00"],
+				ticks: {
+                  fontColor: "#f0f0f0", // this here
+                }
+		
             }], 
 			 yAxes: [{
                 ticks: {
-				
+				 fontColor: "#f0f0f0",
                  suggestedMin: 0
                 }
+		
             }]
         },
 		
         legend: {
             labels: {
                 // This more specific font property overrides the global property
-
+			
                 fontColor: '#ffffff',
                 padding: 20
             },
-            position: 'left'
+            position: 'left',
+				display: false
 			// display: !isMobileDevice()
         },
         title: {

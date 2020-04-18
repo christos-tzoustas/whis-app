@@ -39,19 +39,21 @@ span.iconContainer {
     background-color: #324861;
     border-radius: 15px;
     padding: 20px;
+	
 }
 
-.amountDiv h4, .detailsDiv h4, .overviewDiv h4 {
+.amountDiv h4, .detailsDiv h4, .overviewDiv h4, .editDiv h4 {
     color: #43dde6;
 }
 
-.overviewDiv h4 {
+.overviewDiv h4,  .editDiv h4{
     padding-top: 20px;
     padding-left: 40px;
 }
 .amountDiv span:first-child {
     color: #fc5185;
     font-size: 2.5rem;
+	display: inline-block;
 }
 
 .amountDiv span:nth-child(2) {
@@ -66,11 +68,7 @@ span.iconContainer {
     color: #fc5185;
 }
 
-hr {
-    border-radius: 25px;
-    height: 5px;
-    background-image: linear-gradient(to right, #8695a6, #8695a6 60%, #9aa7b5);
-}
+
 
 #overviewIcon {
      color: #fc5185;
@@ -100,4 +98,9 @@ hr {
 div.overviewDiv {
 	background-color: #324861; 
 	border-radius: 75px 15px 15px 15px ;
+}
+
+div.editDiv {
+	background-color: #324861; 
+	border-radius: 15px
 }

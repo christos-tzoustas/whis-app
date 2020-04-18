@@ -40,7 +40,7 @@ span#lastLogin {
     color: #fc5185;
 }
 
-hr {
+hr.mainHr {
     border-radius: 25px;
     height: 5px;
     background-image: linear-gradient(to right, #8695a6, #8695a6 60%, #9aa7b5);
@@ -65,14 +65,8 @@ div.footer img {
     padding-top: 0;
 }
 
-blockquote.blockquote p {
-    font-size: 1rem;
-    color: #fc5185;
-}
 
-footer.blockquote-footer {
-    color: #4a698c;
-}
+
 
 .inner-addon {
     position: relative;
@@ -242,6 +236,51 @@ div.addExpensesDiv {
 .custom-select-options.hidden-all {
     display: none;
 }
+
+/* edit div styling */
+
+div.editFirstRow {
+	background-color: #364f6b;
+	border-radius: 25px;
+
+}
+
+div.well {
+	padding: 20px;
+}
+
+hr.editHr {
+	background-color: #32465c;
+
+}
+
+button.btnDelete {
+	background-color: #fc5185;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin: 0;
+	color: white;
+	outline: none;
+	border: none;
+}
+
+a.btnEdit {
+		background-color: #43dde6;
+	border-radius: 5px;
+	padding: 5px 10px;
+
+	margin: 0;
+	color: #364f6b;
+	outline: none;
+	border: none;
+}
+
+div.editToggler.hidden-all {
+    display: none;
+}
+
+
+
 
 @-webkit-keyframes autofill {
     0%,

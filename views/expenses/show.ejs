@@ -1,7 +1,7 @@
 <%- include ("../partials/header") %>
 
   <div class="row ">
-            <div class="col-xl-2 align-self-lg-center mb-5 mb-xl-0">
+            <div class="col-xl-2 align-self-xl-start mb-5 mb-xl-0 sticky-top">
                 <div class="row">
                     <div class="col-xl-12 col-4">
                         <div class=" selectedDiv active d-flex justify-content-center">
@@ -43,12 +43,12 @@
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
 								
-									 Detailed View (<%=expenses[0].type %>) 
+							<%=moment(expenses[0].createdAt).format("MMMM")%>'s Detailed View (<%=expenses[0].type %>) 
 							
 								</span>
                         </h4>
                     </div>
-					 <div class="chartDiv pt-3 pb-5 pl-5">
+					 <div class="chartDiv m-5 pt-3 pb-5 ">
 			 
         
 			    <canvas id="myChart"></canvas>
@@ -57,20 +57,95 @@
             <span id='expenses' hidden>
                 <%= JSON.stringify(expenses); %>
             </span>
-            <script src="/scripts/chartDetailed.js">
+            <script src="/scripts/bundle.js">
             </script>
                 </div>
-                
+                <div class="editDiv mb-5 mb-xl-0 ">
+				
+                        <div>
+                        <h4 class="d-flex flex-row">
+                            <i id="overviewIcon" class="far fa-circle"></i>
+                            <span id="overviewSpan" class="d-block">
+								
+						Edit expenses
+							
+								</span>
+                        </h4>
+                    </div>
+                   
+					<div class="well">
+				
+				
+				<div class="row">
+					<div class="col-12 text-center">
+						<% expenses.forEach(function(expense){ %>
+						<div class="editFirstRow row mb-3 pt-2 pb-2 m-0">
+							
+						
+						<div class="col-4">
+						<p class="m-0">
+							<%= moment(expense.createdAt).format("dddd DD/MM/YY") %> 
+							</p>
+						</div>
+							
+								<div class="col-4">
+								<p class="m-0">Amount</p>
+						</div>
+							</div>
+						
+						
+						<div class="row">
+							
+						
+								<div class="col-4">
+							<p><%= expense.description %> </p>
+						</div>
+							<div class="col-4">
+							<p><%= expense.amount %> EUR </p>
+						</div>
+								<div class="col-4">
+							  	<span id="iconEditSpan"><i class="fas fa-sort-down"></i></span>
+								<div class="editToggler hidden-all">
+									<div class=" mt-2 mb-3 d-flex flex-row justify-content-center">
+						
+						
+							<a class="btnEdit mr-3" href="/expenses/<%= expense.type %>/details/<%= expense._id %>/edit ">Edit</a>
+						<form class="delete-form" 
+							  action="/expenses/<%= expense.type %>/details/<%= expense._id %>?_method=DELETE" 
+							  method="POST">
+							<button class="btnDelete">
+								Delete
+							</button>
+						</form>
+					             	</div>
+									</div>
+									
+						</div>
+							
+								
+					<div class="col-12 pt-0 mt-0 mb-3">
+						<hr class="editHr pt-0 mt-0 ">
+							</div>
+						
+							</div>
+							<%	}); %>
+						
+				
+					</div>
+				</div>  
+           
+			</div>
+				</div>
             </div>
-            <div class="col-xl-2 align-self-xl-start">
+            <div class="col-xl-2 align-self-xl-start sticky-top">
                 <div class="row flex-row-reverse">
-                    <div class="col-sm-6 col-xl-12">
-                        <div class="amountDiv mr-xl-3 mt-5 mt-xl-0">
+                    <div class="col-12">
+                        <div class="amountDiv mr-xl-3  mt-xl-0">
                             <h4 class="mb-3">Total Amount</h4>
                             <p>
                              <% var overallTotal = 0; %>
                              <%  expenses.forEach(function(expense) { %>
-                             <%    overallTotal = overallTotal + expense.totalExpensesAmount; %>
+                             <%    overallTotal = overallTotal + expense.amount; %>
                              <%     return overallTotal; %>
 							<%	}); %>
 						  	<% function totalAmount(x) { %>
@@ -79,24 +154,13 @@
 								
 								
 								You have spent
-                                <span><%= totalAmount(overallTotal) %></span>
+                                <span ><%= totalAmount(overallTotal) %></span>
                                 <span>EUR</span>
-                                this month
+                                on <%= (expenses[0].type).toLowerCase() %> this month
                             </p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-12 mt-5">
-                        <div class="detailsDiv mr-sm-3">
-                            <h4 class="mb-3">Detailed View</h4>
-                            <ul id="detailsList" class=" text-capitalize">
-                               <%  expenses.forEach(function(expense){ %>
-                      <a href="/expenses/<%= expense._id %>"> <li>
-                            <%= expense._id %>
-                        </li></a> 
-                        <% }) %>
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             
