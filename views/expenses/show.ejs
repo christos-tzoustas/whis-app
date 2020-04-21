@@ -1,7 +1,7 @@
 <%- include ("../partials/header") %>
 
-  <div class="row ">
-            <div class="col-xl-2 align-self-xl-start mb-5 mb-xl-0 sticky-top">
+  <div class="row flex-column-reverse flex-xl-row">
+            <div class="col-xl-2 align-self-xl-start mb-5 mb-xl-0 sticky-top order-1 order-xl-0">
                 <div class="row">
                     <div class="col-xl-12 col-4">
                         <div class=" selectedDiv active d-flex justify-content-center">
@@ -60,7 +60,7 @@
             <script src="/scripts/bundle.js">
             </script>
                 </div>
-                <div class="editDiv mb-5 mb-xl-0 ">
+                <div class="editDiv mb-xl-0 ">
 				
                         <div>
                         <h4 class="d-flex flex-row">
@@ -140,7 +140,7 @@
             <div class="col-xl-2 align-self-xl-start sticky-top">
                 <div class="row flex-row-reverse">
                     <div class="col-12">
-                        <div class="amountDiv mr-xl-3  mt-xl-0">
+                        <div class="amountDiv mr-xl-3  mt-xl-0 mb-5 ">
                             <h4 class="mb-3">Total Amount</h4>
                             <p>
                              <% var overallTotal = 0; %>

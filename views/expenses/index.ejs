@@ -42,12 +42,9 @@
                         <h4 class="d-flex flex-row">
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
-								<% if (expenses.length < 1) { %>
-								
-								Overview
-								<% } else { %>
-									<%= moment(expenses[0].createdAt).format("MMMM") %>'s Overview
-								<% } %>
+							
+									<%= moment(expenses[0].createdAt).format("MMMM") %>'s Overview  %>
+							
 								</span>
                         </h4>
                     </div>
