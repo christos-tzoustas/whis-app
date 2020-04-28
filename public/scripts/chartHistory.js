@@ -2,16 +2,20 @@
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
 document.getElementById('expenses').remove();
 
-// function isMobileDevice(){
-//     return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-// }
+function isMobileDevice(){
+    return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+}
+
+function parseTotals (amount){
+	 return Number.parseFloat(amount).toFixed(2);
+}
 
 var label = String(expenses[0].type);
 var xAxis = [];
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
-    dataSet.push(expense.totalExpensesAmount);
+    dataSet.push(parseTotals(expense.totalExpensesAmount));
     labels.push(expense.month);
 	
 });
@@ -55,7 +59,8 @@ var chart = new Chart(ctx, {
 				// ["10:00", "11:00", "12:00", "13:00"],
 				ticks: {
                   fontColor: "#f0f0f0", // this here
-                }
+                },
+				display: !isMobileDevice()
 		
             }], 
 			 yAxes: [{
@@ -75,15 +80,14 @@ var chart = new Chart(ctx, {
     }
 });
 
-// function toggleLegend() {
-//     if (window.innerWidth < 768) {
-//         console.log('I AM ON SMALL');
-//         chart.chart.config.options.legend.display = false;
-//     } else {
-//         console.log('IM ON MEDIUM');
-//         chart.chart.config.options.legend.display = true;
-//     }
-// }
+function toggleLegend() {
+    if (window.innerWidth < 768) {
+        console.log('I AM ON SMALL');
+        chart.chart.config.options.scales.xAxes[0].ticks.display = false;
+    } else {
+        console.log('IM ON MEDIUM');
+        chart.chart.config.options.scales.xAxes[0].ticks.display = true;
+    }
+}
 
-// toggleLegend();
-// window.onresize = toggleLegend;
+toggleLegend();

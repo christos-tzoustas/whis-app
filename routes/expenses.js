@@ -70,7 +70,7 @@ router.get('/:id', middleware.isLoggedIn, function(req, res) {
 				res.redirect("/expenses/");
 			} else {
 				
-				res.render("expenses/show", {expenses: expenses, page:"expenses"});
+				res.render("expenses/show", {expenses: expenses, page:"expenses-details"});
 			}
 			
 		}

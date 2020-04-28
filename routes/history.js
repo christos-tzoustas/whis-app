@@ -60,11 +60,50 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
                     res.redirect('/expenses/new');
                 } else {
 					
-                    res.render('expenses/history', { expenses: expenses, page: 'history' });
+                    res.render('history/index', { expenses: expenses, page: 'history' });
                 }
             }
         }
     );
 });
+
+router.get('/:id', middleware.isLoggedIn, function(req, res){					 
+	var month = req.params.id;
+	var date = new Date(moment('01' + month, 'DD MM'));
+Expense.aggregate([
+        // First Stage
+        {
+            $match: {
+				$and:[{createdAt: { $gte: new Date(moment('01' + month, 'DD MM')), $lt: new Date(moment('01' + month, 'DD MM').add(1, 'month')) }},
+					{"author.id": req.user._id}]
+		}
+        },
+        // Second Stage
+        {
+            $group: {
+                _id: "$type",
+				expenses: { $push: "$$ROOT" },
+                totalExpensesAmount: { $sum: '$amount' },
+                count: { $sum: 1 }
+            }
+        },
+        // Third Stage
+        {
+            $sort: { totalExpensesAmount: -1 }
+        }
+    ], function(err, expenses){
+		if (err){
+			console.log(err);
+			req.flash("error", "Something went wrong");
+			res.redirect("back");
+		}  else {
+				res.render("history/show", {expenses: expenses, page:"history"});
+			}
+			
+		
+	});
+});
+
+
 
 module.exports = router;

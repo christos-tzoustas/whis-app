@@ -1,10 +1,9 @@
 body,
 html {
     background-color: #364f6b;
-    /* font-family: 'Open Sans', sans-serif; */
 }
 
-
+/* FLASH MESSAGES */
 div.alert-danger {
     background-color: #fc5185;
     border: none;
@@ -14,6 +13,8 @@ div.alert-success {
     background-color: #43dde6;
     border: none;
 }
+
+/* NAVBAR */
 .navbar-custom {
     background-color: #364f6b;
 }
@@ -28,7 +29,9 @@ img#logo {
     top: -13px;
 }
 
-#logoutIcon,#userIcon,#homeIcon {
+#logoutIcon,
+#userIcon,
+#homeIcon {
     font-size: 30px;
 }
 
@@ -46,12 +49,7 @@ hr.mainHr {
     background-image: linear-gradient(to right, #8695a6, #8695a6 60%, #9aa7b5);
 }
 
-div.quoteDiv {
-    background-color: #324861;
-    border-radius: 15px;
-    padding: 20px;
-}
-
+/* FOOTER */
 .footerParagraph {
     font-size: 0.8rem;
 }
@@ -65,9 +63,110 @@ div.footer img {
     padding-top: 0;
 }
 
+/* MAIN SIDEBAR */
 
+#iconDesktop,
+#iconHistory,
+#iconEuro {
+    width: 32px;
+    height: 32px;
+    color: #43dde6;
+    transition: 0.3s;
+}
 
+span.iconLabel {
+    color: #43dde6;
+    transition: 0.3s;
+}
 
+a.iconLink:hover {
+    text-decoration: none;
+}
+
+div.selectedDiv span.iconContainer {
+    background-color: #43dde6;
+}
+
+div.selectedDiv span.iconLabel {
+    color: #50e0e7;
+}
+
+div.selectedDiv #iconDesktop,
+div.selectedDiv #iconHistory,
+div.selectedDiv #iconEuro {
+    color: #4a698c;
+}
+
+span.iconContainer {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #4a698c;
+    transition: 0.3s;
+}
+
+/* MAIN DIVS STYLING */
+.amountDiv,
+div.editDiv,
+div.detailsDiv {
+    background-color: #324861;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+div.overviewDiv {
+    background-color: #324861;
+    border-radius: 75px 15px 15px 15px;
+}
+
+.amountDiv h4,
+.detailsDiv h4,
+.overviewDiv h4,
+.editDiv h4 {
+    color: #43dde6;
+}
+
+.overviewDiv h4 {
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+#amountDisplay {
+    color: #fc5185;
+    font-size: 2.5rem;
+    display: inline-block;
+}
+
+.amountDiv span:nth-child(2) {
+    color: #fc5185;
+    font-size: 1.5rem;
+}
+
+#overviewIcon {
+    color: #fc5185;
+    font-size: 3rem;
+}
+
+#overviewSpan {
+    padding-left: 20px;
+    padding-top: 8px;
+}
+
+.detailsDiv a {
+    color: #fc5185;
+    transition: 0.3s;
+}
+
+.detailsDiv a:hover {
+    color: #43dde6;
+    cursor: pointer;
+}
+.detailsDiv a:visited,
+.detailsDiv a:hover {
+    text-decoration: none;
+}
+
+/* LOGIN AND ADD EXPENSES DIV */
 .inner-addon {
     position: relative;
 }
@@ -151,7 +250,7 @@ div.addExpensesDiv {
     color: #43dde6;
 }
 
-/* select input */
+/* SELECT INPUT*/
 
 .selectWrapper {
     position: absolute;
@@ -237,51 +336,51 @@ div.addExpensesDiv {
     display: none;
 }
 
-/* edit div styling */
+/* EDIT DIV STYLING */
 
 div.editFirstRow {
-	background-color: #364f6b;
-	border-radius: 25px;
-
+    background-color: #364f6b;
+    border-radius: 25px;
 }
 
 div.well {
-	padding: 20px;
+    padding: 20px;
 }
 
 hr.editHr {
-	background-color: #32465c;
-
+    background-color: #32465c;
 }
 
 button.btnDelete {
-	background-color: #fc5185;
-	border-radius: 5px;
-	padding: 5px 10px;
-	margin: 0;
-	color: white;
-	outline: none;
-	border: none;
+    background-color: #fc5185;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    color: white;
+    outline: none;
+    border: none;
 }
 
 a.btnEdit {
-		background-color: #43dde6;
-	border-radius: 5px;
-	padding: 5px 10px;
+    background-color: #43dde6;
+    border-radius: 5px;
+    padding: 5px 10px;
 
-	margin: 0;
-	color: #364f6b;
-	outline: none;
-	border: none;
+    margin: 0;
+    color: #364f6b;
+    outline: none;
+    border: none;
+}
+
+a.btnEdit:hover {
+    text-decoration: none;
 }
 
 div.editToggler.hidden-all {
     display: none;
 }
 
-
-
-
+/* INPUTS AUTOFILL FOR CHROME*/
 @-webkit-keyframes autofill {
     0%,
     100% {
@@ -290,6 +389,7 @@ div.editToggler.hidden-all {
     }
 }
 
+/* CHANGING ORDER OF NAV BAR ELEMENTS */
 @media screen and (max-width: 992px) {
     ul#rightNavUl li:first-child {
         order: 3;
@@ -306,5 +406,19 @@ div.editToggler.hidden-all {
 @media screen and (max-width: 768px) {
     button.btnExpenses {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #homeIcon,
+    #userIcon,
+    #logoutIcon {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 1330px) and (min-width: 1200px) {
+    span#amountDisplay {
+        font-size: 2.1rem;
     }
 }

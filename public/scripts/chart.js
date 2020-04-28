@@ -5,19 +5,17 @@ function isMobileDevice(){
     return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
 
+function parseTotals (amount){
+	 return Number.parseFloat(amount).toFixed(2);
+}
 
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
-    dataSet.push(expense.totalExpensesAmount);
+    dataSet.push(parseTotals(expense.totalExpensesAmount));
     labels.push(expense._id);
 });
 
-var overallTotal = 0;
-expenses.forEach(function(expense) {
-    overallTotal = overallTotal + expense.totalExpensesAmount;
-    return overallTotal;
-});
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -72,11 +70,11 @@ var chart = new Chart(ctx, {
 			display: !isMobileDevice()
         },
         title: {
-            display: false,
-            text: 'Total amount ' + overallTotal,
-            position: 'top',
+            display: isMobileDevice(),
+            text: "Click for details",
+            position: 'bottom',
 
-            fontStyle: 'regular',
+         
             fontColor: '#ffffff'
         }
     }
@@ -86,11 +84,12 @@ function toggleLegend() {
     if (window.innerWidth < 768) {
         console.log('I AM ON SMALL');
         chart.chart.config.options.legend.display = false;
+		chart.chart.config.options.title.display  = true;
     } else {
         console.log('IM ON MEDIUM');
         chart.chart.config.options.legend.display = true;
+		chart.chart.config.options.title.display  = false;
     }
 }
 
 toggleLegend();
-window.onresize = toggleLegend;

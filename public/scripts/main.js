@@ -1,9 +1,11 @@
+//HIDE FLASH MESSAGES
 $(function() {
     $('#flash').fadeIn(500, 'linear', function() {
         $(this).fadeOut(2500, 'linear');
     });
 });
 
+//INPUT STYLING
 $('#username, #password, #description, #amount').each(function() {
     $(this).on('focus blur', function() {
         $(this)
@@ -25,7 +27,7 @@ $('a.iconLink').hover(function() {
     }
 });
 
-// select input
+//SELECT STYLING
 
 $('span#selectIcon').click(function(event) {
     $('ul.custom-select-options').fadeToggle();
@@ -69,7 +71,7 @@ $(document).click(function() {
 //     return valid;
 // }
 
-//ALTERNATIVE VALIDATION
+//ALTERNATIVE VALIDATION FOR NEW EXPENSE FORM
 function validateForm() {
     var input = $('input#custom-select').val();
     var optionsArr = [].slice.call(document.querySelectorAll('.custom-select-options li'));
@@ -80,11 +82,11 @@ function validateForm() {
     });
     if (!optionsArrText.includes(input)) {
         $('input#custom-select').val('Please select one of the values below ');
-		return false;
+        return false;
     }
 }
 
-//resize select element
+//RESIZE SELECT ELEMENT
 function showWidth() {
     var width = $('div.login.form-group').width();
     return width;
@@ -97,7 +99,27 @@ $(window).resize(function() {
     $('div.selectWrapper').width(width);
 });
 
-//edit div toggle
+// DETAILED VIEW DISPLAY
+if ($('div.detailsItem').length > 2) {
+    $('div#detailsList').addClass('justify-content-center');
+}
+
+//TOGGLE STICKY CLASS FOR SIDEBARS
+function toggleSticky() {
+    if (window.innerWidth > 1200) {
+        $('div.left-sidebar, div.right-sidebar').addClass('sticky-top');
+    } else {
+        $('div.left-sidebar, div.right-sidebar').removeClass('sticky-top');
+    }
+}
+
+toggleSticky();
+window.onresize = function() {
+    toggleSticky();
+    toggleLegend(); //toggle legend from chart.js
+};
+
+//EDIT DIV TOGGLE BUTTONS
 
 $('span#iconEditSpan').click(function(event) {
     $(this)

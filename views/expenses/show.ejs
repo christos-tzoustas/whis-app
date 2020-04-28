@@ -1,7 +1,7 @@
 <%- include ("../partials/header") %>
 
   <div class="row flex-column-reverse flex-xl-row">
-            <div class="col-xl-2 align-self-xl-start mb-5 mb-xl-0 sticky-top order-1 order-xl-0">
+            <div class="col-xl-2 align-self-xl-start mb-5 mb-xl-0 left-sidebar order-1 order-xl-0">
                 <div class="row">
                     <div class="col-xl-12 col-4">
                         <div class=" selectedDiv active d-flex justify-content-center">
@@ -43,35 +43,41 @@
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
 								
-							<%=moment(expenses[0].createdAt).format("MMMM")%>'s Detailed View (<%=expenses[0].type %>) 
+							<%=expenses[0].type %>
 							
 								</span>
                         </h4>
                     </div>
-					 <div class="chartDiv m-5 pt-3 pb-5 ">
+					 <div class="chartDiv  mb-5 mx-3 m-sm-5  pt-2 pb-3 pt-sm-3 pb-sm-5">
 			 
         
 			    <canvas id="myChart"></canvas>
 			</div> 
-			
+					<% var expensesTime = [] %>
+					<% expenses.forEach(function(expense) { %>
+<%	expensesTime.push(moment(expense.createdAt).format("DD MMM")); %>
+ <% }); %>
+			 <span id='expensesTime' hidden>   <%= JSON.stringify(expensesTime); %>  </span>
             <span id='expenses' hidden>
                 <%= JSON.stringify(expenses); %>
+             
             </span>
-            <script src="/scripts/bundle.js">
+           
+            
+					<script src="/scripts/chartDetailed.js">
             </script>
                 </div>
                 <div class="editDiv mb-xl-0 ">
 				
-                        <div>
-                        <h4 class="d-flex flex-row">
-                            <i id="overviewIcon" class="far fa-circle"></i>
-                            <span id="overviewSpan" class="d-block">
+                        
+                        <h4>
+                           
 								
 						Edit expenses
 							
-								</span>
+								
                         </h4>
-                    </div>
+                  
                    
 					<div class="well">
 				
@@ -137,7 +143,7 @@
 			</div>
 				</div>
             </div>
-            <div class="col-xl-2 align-self-xl-start sticky-top">
+            <div class="col-xl-2 align-self-xl-start right-sidebar">
                 <div class="row flex-row-reverse">
                     <div class="col-12">
                         <div class="amountDiv mr-xl-3  mt-xl-0 mb-5 ">
@@ -154,7 +160,7 @@
 								
 								
 								You have spent
-                                <span ><%= totalAmount(overallTotal) %></span>
+                                <span id="amountDisplay" ><%= totalAmount(overallTotal) %></span>
                                 <span>EUR</span>
                                 on <%= (expenses[0].type).toLowerCase() %> this month
                             </p>

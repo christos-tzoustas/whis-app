@@ -4712,5 +4712,6 @@ function toggleLegend() {
 }
 
 toggleLegend();
-window.onresize = toggleLegend;
+window.onresize = toggleLegend();
+
 },{"moment":1}]},{},[2]);

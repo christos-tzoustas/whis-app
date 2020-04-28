@@ -1,23 +1,27 @@
-var moment = require("moment");
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
+var expensesTime = JSON.parse(document.getElementById('expensesTime').innerText);
 document.getElementById('expenses').remove();
+document.getElementById('expensesTime').remove();
 
 function isMobileDevice(){
     return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
 
+function parseTotals (amount){
+	 return Number.parseFloat(amount).toFixed(2);
+}
+
 var label = String(expenses[0].type);
-var xAxis = [];
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
-    dataSet.push({x: expense.createdAt, y: expense.amount});
+    dataSet.push({x: expense.createdAt, y: parseTotals(expense.amount)});
     labels.push(expense.description);
-	xAxis.push(moment(expense.createdAt).format("DD MMM"));
+	
 });
 
-for (var i = xAxis.length; i < 10; i++) {
-  xAxis.push("");
+for (var i = expensesTime.length; i < 10; i++) {
+  expensesTime.push("");
 }
 
 
@@ -68,7 +72,7 @@ var chart = new Chart(ctx, {
 		 scales: {
             xAxes: [{
                 type: 'category',
-                labels: xAxis,
+                labels: expensesTime,
 				// ["10:00", "11:00", "12:00", "13:00"],
 				ticks: {
                   fontColor: "#f0f0f0", // this here,
@@ -107,4 +111,4 @@ function toggleLegend() {
 }
 
 toggleLegend();
-window.onresize = toggleLegend;
+
