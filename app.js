@@ -23,7 +23,8 @@ var expensesRoutes = require("./routes/expenses"),
 	detailsRoutes  = require("./routes/details");
 
 //APP CONFIG
-mongoose.connect('mongodb://localhost:27017/expense_tracker_v2', {
+
+mongoose.connect(process.env.DATABASEURL || 'mongodb://localhost:27017/expense_tracker_v2', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -64,6 +65,6 @@ app.use("/expenses-history", historyRoutes);
 app.use("/expenses/:id/details", detailsRoutes);
 
 //SERVER CONFIG
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, process.env.IP, function() {
     console.log('Expenses tracker app server is listening');
 });
