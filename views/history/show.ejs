@@ -43,7 +43,7 @@
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
 							
-									<%= moment(expenses[0].createdAt).format("MMMM YYYY") %>
+									<%= moment(expenses[0].expenses[0].createdAt).format("MMMM YYYY") %>
 							
 								</span>
                         </h4>
@@ -104,7 +104,7 @@
 								You spent
                                 <span id="amountDisplay"><%= totalAmount(overallTotal) %></span>
                                 <span>EUR</span>
-                                in <%= moment(expenses[0].createdAt).format("MMMM") %>
+                                in <%= moment(expenses[0].expenses[0].createdAt).format("MMMM") %>
                             </p>
                         </div>
                     </div>

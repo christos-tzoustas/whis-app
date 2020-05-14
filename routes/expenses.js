@@ -34,9 +34,10 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
 			console.log(err);
 		} else {
 			if (expenses.length < 1) {
-				req.flash("success", "No data to show. Add expenses to begin :) ");
+				req.flash("success", "No expenses for this month. Add expenses to begin :) ");
 				res.redirect("/expenses/new");
 			} else {
+				
 				res.render("expenses/index", {expenses: expenses, page:"expenses"});
 			}
 			

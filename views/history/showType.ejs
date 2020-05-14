@@ -4,7 +4,7 @@
             <div class="col-xl-2 align-self-xl-start left-sidebar mb-5 mb-xl-0 order-1 order-xl-0">
                 <div class="row">
                     <div class="col-xl-12 col-4">
-                        <div class=" selectedDiv active d-flex justify-content-center">
+                        <div class=" d-flex justify-content-center">
                             <a class="iconLink d-flex flex-column align-items-center " href="/expenses/">
                                 <span class="d-flex iconContainer justify-content-center align-items-center">
                                     <span id="iconDesktop" class="d-flex fas fa-desktop fa-2x  "></span>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="col-xl-12 col-4 mt-xl-5">
-                        <div class="d-flex justify-content-center ">
+                        <div class=" selectedDiv active  d-flex justify-content-center ">
                             <a class="iconLink d-flex flex-column align-items-center " href="/expenses-history">
                                 <span class="d-flex iconContainer justify-content-center align-items-center">
                                     <span id="iconHistory" class=" d-flex fas fa-calendar-alt fa-2x  "></span>
@@ -37,18 +37,18 @@
                 </div>
             </div>
             <div class="col-xl-8  ">
-                <div class="overviewDiv mb-5">
+                <div class="overviewDiv">
                     <div>
                         <h4 class="d-flex flex-row">
                             <i id="overviewIcon" class="far fa-circle"></i>
                             <span id="overviewSpan" class="d-block">
 							
-									<%= moment(expenses[0].createdAt).format("MMMM") %>'s Overview  %>
+								<%= expenses[0].expenses[0].type %>	<%= moment(expenses[0].expenses[0].createdAt).format("YYYY") %>
 							
 								</span>
                         </h4>
                     </div>
-					 <div class="chartDiv pt-3 pb-4 pb-md-5 pl-md-5 ml-md-4">
+					 <div class="chartDiv  mb-5 mx-3 m-sm-5  pt-2 pb-3 pt-sm-3 pb-sm-5">
 			 
         
 			    <canvas id="myChart"></canvas>
@@ -57,10 +57,12 @@
             <span id='expenses' hidden>
                 <%= JSON.stringify(expenses); %>
             </span>
-            <script src="/scripts/chart.js">
+            <script src="/scripts/chartHistory.js">
             </script>
                 </div>
-				 <div class="detailsDiv pb-4">
+				 
+				<!-- KEEPING THIS IN CASE I ADD SOMETHING LIKE TOP 5 EXPENSES -->
+				<!-- <div class="detailsDiv pb-4">
 
               
                     <h4>
@@ -71,20 +73,20 @@
                     </h4>
                
                 <div id="detailsList" class=" d-flex flex-row flex-wrap text-capitalize align-items-center ">
-                    <%  expenses.forEach(function(expense){ %>
-                        <a href="/expenses/<%= expense._id %>">
+                     expenses.forEach(function(expense){ %>
+                        <a href="/expenses/%= expense._id %>">
                             <div class="px-4 py-1 m-3 detailsItem" style="background-color: #364f6b; border-radius: 25px;">
-                                <%= expense._id %>
+                                < expense._id %>
                             </div>
                         </a>
-                        <% }) %>
+                        < }) %>
                            
                 </div>
-            </div>
+            </div> -->
                 
             </div>
             <div class="col-xl-2 align-self-xl-start right-sidebar">
-                <div class="row ">
+                <div class="row flex-row-reverse">
                     <div class="col-12">
                         <div class="amountDiv mr-xl-3 mt-xl-0 mb-5 ">
                             <h4 class="mb-3">Total Amount</h4>
@@ -99,54 +101,14 @@
                              <%   } %>
 								
 								
-								You have spent
+								You spent
                                 <span id="amountDisplay"><%= totalAmount(overallTotal) %></span>
-                                <span>EUR</span>
-                                this month
+                                <span>EUR</span> on <%= expenses[0].expenses[0].type %>
+                                in <%= moment(expenses[0].expenses[0].createdAt).format("YYYY") %>
                             </p>
                         </div>
                     </div>
-                     <div class="col-12">
-                    <div class="top5Div mr-xl-3 mb-5 mt-xl-0">
-                        <h4 class="mb-3">Top 5 Expenses</h4>
-                        <div class="row  mb-n3 mr-n3 ml-n3" style="background-color: #364f6b; border-radius: 25px;">
-                            
-
-                                <% const makeTop5 = () => { %>
-                                    <% 	const allExpenses = [];  %>
-                                        <% 	for (expense of expenses) { %>
-                                            <% 		for (expense of expense.expenses) {  %>
-                                                <% 			allExpenses.push(expense)  %>
-                                                    <% 		}  %>
-                                                        <% }   %>
-                                                            <% 	return allExpenses;  %>
-                                                                <% };  %>
-
-                                                                    <% const sortedExpenses = makeTop5().sort(function (a, b) { %>
-                                                                        <% 	return b.amount - a.amount %>
-                                                                            <%  });%>
-																				
-                                             <% for(let i = 0; sortedExpenses.length < 5 ? i < sortedExpenses.length : i < 5 ; i++) { %>
-												
-                                                                                    <div class="col-3 align-self-center top5Icon">
-                                                                                       <i class="fas fa-euro-sign"></i>
-                                                                                    </div>
-
-                                                                                    <div class="col-6 ml-4 p-2">
-																						<div class="row top5Description">
-																							<%= sortedExpenses[i].description %>
-																						</div>
-																						<div class="row top5Amount">
-																							 <%= sortedExpenses[i].amount %> EUR
-																						</div>
-
-                                                                                    </div>
-							<div class="col-12 my-0 py-0"><hr class="m-0"></div>
-                                                                                    <% }  %>
-
-                        </div>
-                    </div>
-                </div>
+                    
                 </div>
             </div>
             

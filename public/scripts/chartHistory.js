@@ -10,8 +10,7 @@ function parseTotals (amount){
 	 return Number.parseFloat(amount).toFixed(2);
 }
 
-var label = String(expenses[0].type);
-var xAxis = [];
+
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
@@ -82,10 +81,8 @@ var chart = new Chart(ctx, {
 
 function toggleLegend() {
     if (window.innerWidth < 768) {
-        console.log('I AM ON SMALL');
         chart.chart.config.options.scales.xAxes[0].ticks.display = false;
     } else {
-        console.log('IM ON MEDIUM');
         chart.chart.config.options.scales.xAxes[0].ticks.display = true;
     }
 }

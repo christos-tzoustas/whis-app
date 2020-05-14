@@ -101,7 +101,11 @@ $(window).resize(function() {
 
 // DETAILED VIEW DISPLAY
 if ($('div.detailsItem').length > 2) {
-    $('div#detailsList').addClass('justify-content-center');
+    $('div.detailsItem').parent().closest('div').addClass('justify-content-center');
+}
+
+if ($('div.detailsItemType').length > 2) {
+    $('div.detailsItemType').parent().closest('div').addClass('justify-content-center');
 }
 
 //TOGGLE STICKY CLASS FOR SIDEBARS

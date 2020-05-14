@@ -1,28 +1,100 @@
-<%- include ("./partials/header") %>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="row">
-    <h1 style="text-align: center">Sign Up</h1>
-    <div style="width: 30%; margin: 25px auto;">
-        <form action="/register" method="post">
-           <div class="form-group">
-			   <label for="username">Username</label>
-                <input class="form-control" type="text" name="username" placeholder="username">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Tracker App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+ 
+
+</head>
+
+<body>
+
+    <div id="flash" class="container">
+        <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger mt-4 mb-n2" role="alert">
+                <a href="#" class="alert-link">
+                    <%= error %>
+                </a>
             </div>
-            <div class="form-group">
-				<label for="password">Password</label>
-                <input class="form-control" type="password" name="password" placeholder="password">
-            </div>
-			 <div class="form-group">
-				 <label for="avatar">Avatar</label>
-                <input class="form-control" type="text" name="avatar" placeholder="avatar url">
-            </div> 
-			
-            <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>
-            </div>
-        </form>
-        
+            <% } %>
+                <% if (success && success.length > 0) { %>
+                    <div class="alert alert-success mt-4 mb-n2" role="alert">
+                        <a href="#" class="alert-link">
+                            <%= success %>
+                        </a>
+                    </div>
+                    <% } %>
     </div>
-</div>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center m-0 p-0">
+            <div class="jumbotron min-vh-90 col-12 mb-0 p-2 p-lg-2 ">
+                <div id="logo">
+                    <img src="/images/logo-green.png" id="logo">
+                </div>
+                <div class="row h-100 justify-content-lg-between justify-content-sm-center  justify-content-center align-items-center mt-5">
+                    <div class="col-lg-7 d-none d-lg-block pl-5 pb-4">
 
-<%- include ("./partials/footer") %>
+                        <div class="img">
+                            <img class="img-fluid " src="images/savings.svg">
+                        </div>
+                    </div>
+					<div class=" col-12 col-md-10 col-lg-4 mb-lg-4 mr-lg-5 p-3 pl-4 pr-4 m-2 m-lg-0 p-lg-0">
+                    <div class="welcomeDiv text-light text-center ">
+                        <h2>Register</h2>
+                        
+                        <form action="/register" method="POST">
+                            <div class="login form-group">
+                                <label for="username"></label>
+                                <div class="inner-addon my-auto">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control ml-4 p-3" id="username" name="username" placeholder="Username">
+                                </div>
+                            </div>
+							<div class="login form-group">
+                                <label for="email"></label>
+                                <div class="inner-addon my-auto">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" class="form-control ml-4 p-3" id="email" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="login form-group">
+                                <label for="password"></label>
+                                <div class="inner-addon">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="password" class=" form-control ml-4 p-3" id="password" name="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="btn text-center">Submit</button>
+                            </div>
+                        </form>
+						
+                    </div>
+						<div class="noAccount text-center text-light">
+							<p class="mt-4 mb-0">
+								Already a member?<a href="/login"> Back to log in page</a>
+							</p>
+							
+						</div>
+					</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="/scripts/main.js" type="text/javascript"></script>
+
+</body>
+
+</html>

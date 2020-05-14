@@ -67,9 +67,10 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
     );
 });
 
-router.get('/:id', middleware.isLoggedIn, function(req, res){					 
+//SHOW ROUTE MONTH
+router.get('/month/:id', middleware.isLoggedIn, function(req, res){					 
 	var month = req.params.id;
-	var date = new Date(moment('01' + month, 'DD MM'));
+	
 Expense.aggregate([
         // First Stage
         {
@@ -97,6 +98,7 @@ Expense.aggregate([
 			req.flash("error", "Something went wrong");
 			res.redirect("back");
 		}  else {
+		        
 				res.render("history/show", {expenses: expenses, page:"history"});
 			}
 			
@@ -104,6 +106,67 @@ Expense.aggregate([
 	});
 });
 
+//SHOW ROUTE TYPE
+router.get('/type/:id', middleware.isLoggedIn, function(req, res){					 
+	var type = req.params.id;
+	
+Expense.aggregate([
+        // First Stage
+        {
+                $match: {
+                    $and: [
+                        {
+                            createdAt: {
+                                $gte: new Date(moment('1 1', 'DD MM')),
+                                $lt: new Date(moment('1 1', 'DD MM').add(1, 'year'))
+                            }
+                        },
+                        { 'author.id': req.user._id },
+						{"type": type}
+                    ]
+                }
+            },
+        // Second Stage
+        {
+                $group: {
+                    _id: { $dateToString: { format: '%m', date: '$createdAt' } },
+                    expenses: { $push: '$$ROOT' },
+                    totalExpensesAmount: { $sum: '$amount' },
+                    count: { $sum: 1 }
+                }
+            }, 
+			{
+    $addFields: {
+        month: {
+            $let: {
+                vars: {
+					month: { $toInt: "$_id" },
+                    monthsInString: [,'January', 'February', 'March', 'April', 'May', 'June', "July", "August", "September", "October", "November", "December"]
+                },
+                in: {
+                    $arrayElemAt: ['$$monthsInString', '$$month']
+                }
+            }
+        }
+    }
+},
+        // Third Stage
+        {
+            $sort: { totalExpensesAmount: -1 }
+        }
+    ], function(err, expenses){
+		if (err){
+			console.log(err);
+			req.flash("error", "Something went wrong");
+			res.redirect("back");
+		}  else {
+		        
+				res.render("history/showType", {expenses: expenses, page:"history"});
+			}
+			
+		
+	});
+});
 
 
 module.exports = router;

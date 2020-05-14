@@ -13,7 +13,8 @@ router.get("/register", function(req, res){
 //HANDLING REGISTER LOGIC
 router.post("/register", function(req, res){
 	var newUser = new User({
-		username: req.body.username	
+		username: req.body.username,
+		email: req.body.email
 	});
 	User.register(newUser, req.body.password, function(err, user){
 		if(err) {

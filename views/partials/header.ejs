@@ -33,7 +33,7 @@
                         <ul class="navbar-nav d-flex float-left">
                             <li class="nav-item  <%= typeof page !== 'undefined' && page === 'expenses' ? 'active' : '' %>">
                                 <a class="nav-link pb-lg-2 mb-lg-1 pl-0" href="/expenses">
-                                    <i id="homeIcon" class="fas fa-home pl-lg-0 pt-lg-1"></i>
+                                    <i id="homeIcon" class="fas fa-home ml-lg-n3 pt-lg-1"></i>
 
                                 </a>
                             </li>
@@ -43,11 +43,11 @@
                             <li class="nav-item ml-auto pb-lg-2">
                                 <span class="d-block  float-right float-sm-left">Welcome
                                     <span id="currentUser">
-                                        <%= currentUser.username %>
+                                        <%= currentUser.username  %>
                                     </span> !</span>
                                 <span class="d-block">
                                     <span id="lastLogin">Last Login:</span>
-                                    <%= moment(currentUser.lastLogin).format("ddd, hA") %>
+                                    <%=  moment(currentUser.lastLogin).format("ddd, hA") %>
                                 </span>
                             </li>
                             <li class="nav-item float-left d-flex pb-lg-1 pl-lg-3 pl-4">

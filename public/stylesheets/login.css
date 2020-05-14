@@ -15,7 +15,8 @@ body {
 }
 
 .fa.fa-user,
-.fa.fa-lock {
+.fa.fa-lock,
+.fas.fa-envelope {
     position: absolute;
     pointer-events: none;
     left: 0px;
@@ -33,8 +34,8 @@ div.jumbotron {
 
 div#logo {
     position: absolute;
-    left: 30px;
-    top: 30px;
+    left: 10px;
+    top: 10px;
 }
 
 img#logo {
@@ -48,9 +49,19 @@ div.welcomeDiv {
     border-radius: 25px;
 }
 
-@media screen and (max-width: 576px) {
+div.noAccount a:hover {
+    color: #43dde6;
+    cursor: pointer;
+}
+
+div.noAccount a {
+	color: #fc5185
+		
+}
+
+/* @media screen and (max-width: 576px) {
     div#logo {
         left: 10px;
         top: 10px;
     }
-}
+} */
