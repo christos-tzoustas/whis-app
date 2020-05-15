@@ -120,7 +120,9 @@ function toggleSticky() {
 toggleSticky();
 window.onresize = function() {
     toggleSticky();
-    toggleLegend(); //toggle legend from chart.js
+	if($("canvas").is("#myChart")){
+		toggleLegend(); //toggle legend from chart.js
+	}
 };
 
 //EDIT DIV TOGGLE BUTTONS

@@ -82,11 +82,9 @@ var chart = new Chart(ctx, {
 
 function toggleLegend() {
     if (window.innerWidth < 768) {
-        console.log('I AM ON SMALL');
         chart.chart.config.options.legend.display = false;
 		chart.chart.config.options.title.display  = true;
     } else {
-        console.log('IM ON MEDIUM');
         chart.chart.config.options.legend.display = true;
 		chart.chart.config.options.title.display  = false;
     }
