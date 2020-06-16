@@ -1,18 +1,18 @@
 var expenses = JSON.parse(document.getElementById('expenses').innerText);
-document.getElementById('expenses').remove();
+// document.getElementById('expenses').remove();
 
 function isMobileDevice(){
     return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
 
-function parseTotals (amount){
-	 return Number.parseFloat(amount).toFixed(2);
-}
+// function parseTotals (amount){
+// 	 return Number.parseFloat(amount).toFixed(2);
+// }
 
 var labels = [];
 var dataSet = [];
 expenses.forEach(function(expense) {
-    dataSet.push(parseTotals(expense.totalExpensesAmount));
+    dataSet.push(expense.totalExpensesAmount);
     labels.push(expense._id);
 });
 
