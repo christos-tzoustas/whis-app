@@ -3,5 +3,5 @@ MEN stack expense tracking application
 
 To login use:
 
-Username: "User"
+Username: "User",
 Password: "pass"
