@@ -1,11 +1,11 @@
-var express = require('express'),
+const express = require('express'),
     router = express.Router(),
     Expense = require('../models/expense'),
     moment = require('moment'),
     middleware = require('../middleware/index');
 
 //HISTORY ROUTE
-router.get('/', middleware.isLoggedIn, function(req, res) {
+router.get('/', middleware.isLoggedIn, (req, res) => {
     Expense.aggregate(
         [
             // First Stage
@@ -51,7 +51,7 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
                 $sort: { _id: 1 }
             }
         ],
-        function(err, expenses) {
+        (err, expenses) => {
             if (err) {
                 console.log(err);
             } else {
@@ -68,7 +68,7 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
 });
 
 //SHOW ROUTE MONTH
-router.get('/month/:id', middleware.isLoggedIn, function(req, res){					 
+router.get('/month/:id', middleware.isLoggedIn, (req, res) =>{					 
 	var month = req.params.id;
 	
 Expense.aggregate([
@@ -92,7 +92,7 @@ Expense.aggregate([
         {
             $sort: { totalExpensesAmount: -1 }
         }
-    ], function(err, expenses){
+    ], (err, expenses) => {
 		if (err){
 			console.log(err);
 			req.flash("error", "Something went wrong");
@@ -107,7 +107,7 @@ Expense.aggregate([
 });
 
 //SHOW ROUTE TYPE
-router.get('/type/:id', middleware.isLoggedIn, function(req, res){					 
+router.get('/type/:id', middleware.isLoggedIn, (req, res) => {					 
 	var type = req.params.id;
 	
 Expense.aggregate([
@@ -154,7 +154,7 @@ Expense.aggregate([
         {
             $sort: { totalExpensesAmount: -1 }
         }
-    ], function(err, expenses){
+    ], (err, expenses) =>{
 		if (err){
 			console.log(err);
 			req.flash("error", "Something went wrong");

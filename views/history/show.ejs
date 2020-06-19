@@ -91,7 +91,7 @@
                         <div class="amountDiv mr-xl-3 mt-xl-0 mb-5 ">
                             <h4 class="mb-3">Total Amount</h4>
                             <p>
-                             <% var overallTotal = 0; %>
+                             <% let overallTotal = 0; %>
                              <%  expenses.forEach(function(expense) { %>
                              <%    overallTotal = overallTotal + expense.totalExpensesAmount; %>
                              <%     return overallTotal; %>

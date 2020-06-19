@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expenses Tracker App</title>
+    <title>Whis Expense Tracker App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-   
+    <link rel="icon" href="/images/icon.png">
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 
 </head>
@@ -44,9 +44,9 @@
                                 <span class="d-block  float-right float-sm-left">Welcome
                                     <span id="currentUser">
                                         <%= currentUser.username  %>
-                                    </span> !</span>
+                                    </span> ! </span>
                                 <span class="d-block">
-                                    <span id="lastLogin">Last Login:</span>
+                                    <span id="lastLogin"> <br> Last Login:</span>
                                     <%=  moment(currentUser.lastLogin).format("ddd, hA") %>
                                 </span>
                             </li>

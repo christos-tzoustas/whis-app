@@ -1,4 +1,4 @@
-var express    = require("express"),
+const express    = require("express"),
 	router     = express.Router(),
 	Expense    = require("../models/expense"),
 	moment     = require("moment"),
@@ -6,7 +6,7 @@ var express    = require("express"),
 
 //EXPENSES
 //INDEX ROUTE
-router.get('/', middleware.isLoggedIn, function(req, res) {
+router.get('/', middleware.isLoggedIn, (req, res) => {
     Expense.aggregate([
         // First Stage
         {
@@ -29,7 +29,7 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
         {
             $sort: { totalExpensesAmount: -1 }
         }
-    ], function(err, expenses){
+    ], (err, expenses) => {
 		if (err){
 			console.log(err);
 		} else {
@@ -47,13 +47,13 @@ router.get('/', middleware.isLoggedIn, function(req, res) {
 
 
 //NEW ROUTE
-router.get('/new', middleware.isLoggedIn, function(req, res) {
+router.get('/new', middleware.isLoggedIn, (req, res) => {
     res.render('expenses/new', {page: "addExpenses"});
 });
 
 
 //SHOW ROUTE
-router.get('/:id', middleware.isLoggedIn, function(req, res) {
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
     Expense.find(
       
         {
@@ -62,7 +62,7 @@ router.get('/:id', middleware.isLoggedIn, function(req, res) {
 				
             }
 
-    , function(err, expenses){
+    , (err, expenses) => {
 		if (err){
 			console.log(err);
 		} else {
@@ -79,17 +79,17 @@ router.get('/:id', middleware.isLoggedIn, function(req, res) {
 });
 
 //CREATE ROUTE
-router.post('/', middleware.isLoggedIn, function(req, res) {
-    var author = {
+router.post('/', middleware.isLoggedIn, (req, res) => {
+    const author = {
         id: req.user._id,
         username: req.user.username
     };
-    var desc = req.body.description;
-    var type = req.body.type;
-    var amount = req.body.amount;
-    var newExpense = { author: author, description: desc, type: type, amount: amount };
+    const description = req.body.description;
+    const type = req.body.type;
+    const amount = req.body.amount;
+    const newExpense = { author, description, type, amount };
 
-    Expense.create(newExpense, function(err, expense) {
+    Expense.create(newExpense, (err, expense) => {
         if (err) {
             console.log(err);
         } else {

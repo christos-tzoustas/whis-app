@@ -242,14 +242,17 @@ input#email {
     font-size: 1.2rem;
 }
 
-input#username:-webkit-autofill,
-input#password:-webkit-autofill,
-input#description:-webkit-autofill,
-input#amount:-webkit-autofill,
-input#email:-webkit-autofill {
-    -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
+/* FIX FOR INPUTS AUTOFILL IN CHROME*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #324861 inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
 }
 
 div.addExpensesDiv {
@@ -404,14 +407,8 @@ div.editToggler.hidden-all {
     display: none;
 }
 
-/* INPUTS AUTOFILL FOR CHROME*/
-@-webkit-keyframes autofill {
-    0%,
-    100% {
-        color: #666;
-        background: transparent;
-    }
-}
+
+
 
 /* CHANGING ORDER OF NAV BAR ELEMENTS */
 @media screen and (max-width: 992px) {

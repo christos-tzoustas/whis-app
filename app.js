@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-var express        = require('express'),
+const express        = require('express'),
     app            = express(),
     bodyParser     = require('body-parser'),
     mongoose       = require('mongoose'),
@@ -10,13 +10,14 @@ var express        = require('express'),
     methodOverride = require('method-override'),
     User           = require('./models/user'),
     Expense        = require('./models/expense'),
-    seedDB         = require('./seeds'),
-	flash          = require("connect-flash");
+    // seedDB         = require('./seeds'),
+    flash          = require("connect-flash")
+    
 
 
 
 //REQUIRING ROUTES
-var expensesRoutes = require("./routes/expenses"),
+const expensesRoutes = require("./routes/expenses"),
 	indexRoutes    = require("./routes/index"),
 	usersRoutes    = require("./routes/users"),
 	historyRoutes  = require("./routes/history"),
@@ -24,7 +25,7 @@ var expensesRoutes = require("./routes/expenses"),
 
 //APP CONFIG
 
-mongoose.connect(process.env.DATABASEURL || 'mongodb://localhost:27017/expense_tracker_v2', {
+mongoose.connect(process.env.DATABASEURL || 'mongodb://localhost:27017/expense_tracker_v9', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -34,7 +35,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.locals.moment = require('moment');
-// seedDB(); //seeding database
 app.use(flash());
 
 //PASSPORT CONFIG
@@ -65,6 +65,6 @@ app.use("/expenses-history", historyRoutes);
 app.use("/expenses/:id/details", detailsRoutes);
 
 //SERVER CONFIG
-app.listen(process.env.PORT || 3000, process.env.IP, function() {
+app.listen(process.env.PORT || 3000, process.env.IP, () => {
     console.log('Expenses tracker app server is listening');
 });
