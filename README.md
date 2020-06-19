@@ -1,2 +1,2 @@
 # whis-app
-Expense tracker app
+MEN stack expense tracking application
