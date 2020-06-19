@@ -1,7 +1,7 @@
 # whis-app
 MEN stack expense tracking application
 
-To login use:
+To login as a guest use:
 
 Username: "User",
 Password: "pass"
