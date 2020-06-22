@@ -11,7 +11,7 @@ function isMobileDevice() {
 
 const labels = [];
 const dataSet = [];
-expenses.forEach((expense) =>{
+expenses.forEach(function(expense){
 	dataSet.push(expense.totalExpensesAmount.toFixed(2));
 	labels.push(expense._id);
 });

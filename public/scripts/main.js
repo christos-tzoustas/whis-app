@@ -20,7 +20,7 @@ $('a.iconLink').hover(function() {
 
 //SELECT STYLING
 
-$('span#selectIcon').click((event) => {
+$('span#selectIcon').click(function(event) {
 	$('ul.custom-select-options').fadeToggle();
 	$('input#custom-select').toggleClass('selected');
 	$('ul.custom-select-options').toggleClass('selected');
@@ -38,7 +38,7 @@ $('ul.custom-select-options li').click(function() {
 	$('input#custom-select').val(type);
 });
 
-$(document).click(() => {
+$(document).click(function() {
 	$('input#custom-select').removeClass('selected');
 	$('ul.custom-select-options').removeClass('selected');
 	$('span#selectIcon').removeClass('selected');
@@ -67,7 +67,7 @@ function validateForm() {
 	const input = $('input#custom-select').val();
 	const optionsArr = [].slice.call(document.querySelectorAll('.custom-select-options li'));
 	const optionsArrText = [];
-	optionsArr.forEach((item) => {
+	optionsArr.forEach(function(item) {
 		const option = item.textContent;
 		optionsArrText.push(option);
 	});
@@ -85,7 +85,7 @@ function showWidth() {
 
 $('div.selectWrapper').width(showWidth());
 
-$(window).resize(() => {
+$(window).resize(function() {
 	const width = $('div.login.form-group').width();
 	$('div.selectWrapper').width(width);
 });

@@ -12,10 +12,11 @@ function isMobileDevice() {
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+
 const label = String(expenses[0].type);
 const labels = [];
 const dataSet = [];
-expenses.forEach((expense) => {
+expenses.forEach(function(expense) {
 	dataSet.push({ x: expense.createdAt, y: expense.amount.toFixed(2) });
 	labels.push(expense.description);
 });
